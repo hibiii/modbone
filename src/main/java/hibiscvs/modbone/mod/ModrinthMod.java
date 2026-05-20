@@ -4,13 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.google.gson.Gson;
+import com.google.gson.annotations.SerializedName;
 
 import hibiscvs.modbone.net.Request;
-import hibiscvs.modbone.net.json.ModrinthResponse;
 
-public class ModrinthMod {
+public class ModrinthMod extends ProvidedModData {
 
     private String projectId;
+    @SerializedName("versionIds")
     private HashMap<String,String> names2Ids;
 
     public ModrinthMod(String projectId, HashMap<String,String> names2Ids) {
@@ -18,6 +19,7 @@ public class ModrinthMod {
         this.names2Ids = names2Ids;
     }
 
+    @Override
     public Map<String,Integer> getDownloadNumbers() {
         Map<String,Integer> names2Downloads = new HashMap<>();
         Map<String,Integer> ids2Downloads = new HashMap<>();
@@ -33,5 +35,10 @@ public class ModrinthMod {
             names2Downloads.put(name, ids2Downloads.get(id));
         }
         return names2Downloads;
+    }
+
+    private class ModrinthResponse {
+        public String id;
+        public int downloads;
     }
 }
