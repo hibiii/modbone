@@ -2,6 +2,14 @@ plugins {
     id 'application'
 }
 
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.google.code.gson:gson:${project.deps_gson}"
+}
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of 25 
