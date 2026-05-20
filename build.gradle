@@ -1,0 +1,13 @@
+plugins {
+    id 'application'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of 25 
+    }
+}
+
+application {
+    mainClass = 'hibiscvs.modbone.Main'
+}
