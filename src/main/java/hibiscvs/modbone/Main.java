@@ -33,6 +33,10 @@ public class Main {
             System.err.println("Could not load the database: %s".formatted(e.getMessage()));
             System.exit(5);
         }
+        if(db.hasTodaysRecords()) {
+            System.err.println("Metrics for today have already been recorded, exiting");
+            System.exit(0);
+        }
         db.verifyModsList(mods);
         System.out.println("OK");
     }
