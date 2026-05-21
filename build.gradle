@@ -17,6 +17,19 @@ java {
     }
 }
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'hibiscvs.modbone.Main'
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory()? it : zipTree(it) }
+    }
+}
+
+tasks.named('jar') {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
 application {
     mainClass = 'hibiscvs.modbone.Main'
 }
