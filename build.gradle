@@ -8,6 +8,7 @@ repositories {
 
 dependencies {
     implementation "com.google.code.gson:gson:${project.deps_gson}"
+    implementation "org.xerial:sqlite-jdbc:${project.deps_sqlite_jdbc}"
 }
 
 java {
