@@ -97,7 +97,7 @@ public class Main {
         NONE,
         MONITOR { @Override public void execute() throws SQLException {
             if (Main.mods == null) {
-                try {MonitorEngine.loadModList();}
+                try {Main.mods = MonitorEngine.loadModList();}
                 catch(FileNotFoundException e) {
                     Logger.error("Could not load the mod definitions list: %s".formatted(e.getMessage()));
                     System.exit(1);
@@ -114,7 +114,7 @@ public class Main {
                 Logger.info("There's already records for today, ignoring");
                 return;
             }
-            MonitorEngine.performForAllMods(mods);
+            MonitorEngine.performForAllMods(Main.mods);
         }},
         ;
 

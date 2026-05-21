@@ -65,8 +65,12 @@ public final class Database {
                 statement.setInt(2, modId);
                 statement.setString(3, entry.getKey());
                 DownloadNumberPair dls = entry.getValue();
-                statement.setInt(4, dls.modrinth());
-                statement.setInt(5, dls.curseforge());
+                if(dls.modrinth() != null) {
+                    statement.setInt(4, dls.modrinth());
+                }
+                if(dls.curseforge != null) {
+                    statement.setInt(5, dls.curseforge());
+                }
                 statement.addBatch();
             }
             statement.executeBatch();
