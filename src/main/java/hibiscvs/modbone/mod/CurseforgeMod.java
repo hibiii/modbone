@@ -11,7 +11,7 @@ import com.google.gson.annotations.SerializedName;
 import hibiscvs.modbone.Main;
 import hibiscvs.modbone.net.Request;
 
-public class CurseforgeMod extends ProvidedModData {
+public class CurseforgeMod {
 
     private String modId;
     @SerializedName("fileIds")
@@ -22,7 +22,6 @@ public class CurseforgeMod extends ProvidedModData {
         this.names2Ids = names2Ids;
     }
 
-    @Override
     public Map<String,Integer> getDownloadNumbers() {
         Map<String,Integer> names2Downloads = new HashMap<>();
         Map<String,Integer> ids2Downloads = new HashMap<>();
