@@ -9,7 +9,7 @@ modbone is currently in alpha and is missing export functionality.
 modbone requires manual setup, because it is currently under heavy development. A pre-made SQLite3 database is required, and the following SQLite DDL is used to model such:
 
 ```sql
-CREATE TABLE TABLE IF NOT EXISTS mod_id (
+CREATE TABLE IF NOT EXISTS mod_id (
     "id" INTEGER NOT NULL PRIMARY KEY autoincrement,
     "name" TEXT NOT NULL UNIQUE
 );
