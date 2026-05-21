@@ -114,6 +114,7 @@ public class Main {
                 Logger.info("There's already records for today, ignoring");
                 return;
             }
+            db.verifyModsList(Main.mods);
             MonitorEngine.performForAllMods(Main.mods);
         }},
         ;
