@@ -1,5 +1,6 @@
 plugins {
     id 'application'
+    id 'com.gradleup.shadow' version '9.+'
 }
 
 repositories {
@@ -21,13 +22,13 @@ jar {
     manifest {
         attributes 'Main-Class': 'hibiscvs.modbone.Main'
     }
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory()? it : zipTree(it) }
-    }
+    from ('LICENSE')
 }
 
-tasks.named('jar') {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+shadowJar {
+    filesMatching('META-INF/services/**') {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    }
 }
 
 application {
