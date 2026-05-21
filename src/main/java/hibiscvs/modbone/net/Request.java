@@ -6,6 +6,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+import hibiscvs.modbone.Logger;
+
 public class Request {
 
     private HttpClient client;
@@ -47,7 +49,7 @@ public class Request {
             this.attempts--;
             if(response.statusCode() == 429) {
                 int delay = response.headers().firstValue("Retry-After").map(Integer::parseUnsignedInt).orElse(this.ratelimit);
-                System.err.println("WARN: 429 on hitting '%s', waiting %ds, %d retries left".formatted(request.uri(), delay, this.attempts));
+                Logger.warning("429 on hitting '%s', waiting %ds, %d retries left".formatted(request.uri(), delay, this.attempts));
                 try {
                     Thread.sleep(delay * 1000 + 200);
                 }
@@ -60,7 +62,7 @@ public class Request {
                 throw new IllegalStateException("Incorrect configuration: received status %d from URI '%s'".formatted(response.statusCode(), request.uri()));
             }
             if(response.statusCode() / 100 == 5) {
-                System.err.println("WARN: %d on hitting '%s', waiting 30s".formatted(response.statusCode(), request.uri(), 30));
+                Logger.warning("WARN: %d on hitting '%s', waiting 30s".formatted(response.statusCode(), request.uri(), 30));
                 this.attempts++;
                 try {
                     Thread.sleep(30 * 1000 + 200);

@@ -99,7 +99,7 @@ public class Main {
             if (Main.mods == null) {
                 try {MonitorEngine.loadModList();}
                 catch(FileNotFoundException e) {
-                    System.err.println("Could not load the mod definitions list: %s".formatted(e.getMessage()));
+                    Logger.error("Could not load the mod definitions list: %s".formatted(e.getMessage()));
                     System.exit(1);
                 }
             }
@@ -107,11 +107,11 @@ public class Main {
             try {
                 db = Database.getDatabase();
             } catch (SQLException e) {
-                System.err.println("Could not load the database: %s".formatted(e.getMessage()));
+                Logger.error("Could not load the database: %s".formatted(e.getMessage()));
                 System.exit(5);
             }
             if (db.hasTodaysRecords()) {
-                System.err.println("INFO: There's already records for today, ignoring");
+                Logger.info("There's already records for today, ignoring");
                 return;
             }
             MonitorEngine.performForAllMods(mods);

@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import hibiscvs.modbone.Logger;
 import hibiscvs.modbone.Main;
 import hibiscvs.modbone.mod.Mod;
 
@@ -41,7 +42,7 @@ public final class Database {
         while (results.next()) {
             String name = results.getString("name");
             if (!definedMods.contains(name)) {
-                System.err.println("WARN: mod \"%s\" is recorded in the database but is not defined, keeping".formatted(name));
+                Logger.warning("mod \"%s\" is recorded in the database but is not defined, keeping".formatted(name));
             }
         }
     }
