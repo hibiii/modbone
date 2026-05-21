@@ -6,6 +6,7 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
+import hibiscvs.modbone.Main;
 import hibiscvs.modbone.net.Request;
 
 public class ModrinthMod extends ProvidedModData {
@@ -23,7 +24,9 @@ public class ModrinthMod extends ProvidedModData {
     public Map<String,Integer> getDownloadNumbers() {
         Map<String,Integer> names2Downloads = new HashMap<>();
         Map<String,Integer> ids2Downloads = new HashMap<>();
-        String response = new Request("https://api.modrinth.com/v2/project/%s/version".formatted(this.projectId)).get();
+        String response = new Request("https://api.modrinth.com/v2/project/%s/version".formatted(this.projectId))
+            .header("User-Agent", Main.USER_AGENT)
+            .get();
         Gson gson = new Gson();
         ModrinthResponse[] versions = gson.fromJson(response, ModrinthResponse[].class);
         for (ModrinthResponse version : versions) {

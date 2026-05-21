@@ -15,7 +15,7 @@ public class Request {
 
     public Request(String uRI) {
         this.client = HttpClient.newHttpClient();
-        this.requestBuilder = HttpRequest.newBuilder(URI.create(uRI)).GET();
+        this.requestBuilder = HttpRequest.newBuilder(URI.create(uRI));
     }
 
     public Request ratelimit(int delay) {
@@ -35,7 +35,7 @@ public class Request {
 
     public String get() {
         String out = null;
-        HttpRequest request = this.requestBuilder.build();
+        HttpRequest request = this.requestBuilder.GET().build();
         while(this.attempts > 0) {
             HttpResponse<String> response = null;
             try {
