@@ -36,6 +36,10 @@ public class CurseforgeMod {
         }
         return names2Downloads;
     }
+    
+    public HashMap<String, String> getNames2Ids() {
+        return names2Ids;
+    }
 
     private List<CurseforgeFile> collectFiles() {
         List<CurseforgeFile> files = new ArrayList<>();

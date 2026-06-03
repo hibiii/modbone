@@ -39,6 +39,10 @@ public class ModrinthMod {
         return names2Downloads;
     }
 
+    public HashMap<String, String> getNames2Ids() {
+        return names2Ids;
+    }
+
     private class ModrinthResponse {
         public String id;
         public int downloads;

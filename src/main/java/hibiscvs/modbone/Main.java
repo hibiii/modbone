@@ -103,6 +103,16 @@ public class Main {
                     System.exit(1);
                 }
             }
+            for (Mod mod : Main.mods) {
+                if(mod.getCurseforgeData() == null || mod.getCurseforgeData().getNames2Ids().isEmpty()) {
+                    continue;
+                }
+                if(Main.CURSEFORGE_API_KEY == null || Main.CURSEFORGE_API_KEY.isEmpty()) {
+                    Logger.error("A CurseForge API key is require to get CurseForge data");
+                    System.exit(1);
+                }
+                break;
+            }
             Database db = null;
             try {
                 db = Database.getDatabase();
